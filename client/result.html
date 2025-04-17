@@ -1,0 +1,33 @@
+<!-- result.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Your Career Prediction</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Your Career Prediction</h1>
+    <div id="prediction-result"></div>
+    <div class="button-group">
+      <button onclick="window.location.href='index.html'">New Prediction</button>
+      <button onclick="window.location.href='history.html'">View History</button>
+    </div>
+  </div>
+  <script>
+    window.onload = function() {
+      // Get the prediction from URL parameters
+      const urlParams = new URLSearchParams(window.location.search);
+      const prediction = urlParams.get('prediction');
+      
+      if (prediction) {
+        document.getElementById('prediction-result').innerHTML = decodeURIComponent(prediction);
+      } else {
+        document.getElementById('prediction-result').innerHTML = 
+          '<p class="error">No prediction found. Please go back and try again.</p>';
+      }
+    };
+  </script>
+</body>
+</html>

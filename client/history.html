@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Prediction History</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Your Prediction History</h1>
+    <div id="history-list"></div>
+    <div class="button-group">
+      <button onclick="clearHistory()">Clear History</button>
+      <button onclick="exportHistory()">Export as .txt</button>
+      <button onclick="window.location.href='index.html'">Back to Home</button>
+    </div>
+  </div>
+  <script>
+    const historyList = document.getElementById('history-list');
+    const predictions = JSON.parse(localStorage.getItem('predictionHistory') || '[]');
+    
+    if (predictions.length === 0) {
+      historyList.innerHTML = '<p>No prediction history found.</p>';
+    } else {
+      predictions.forEach((item, index) => {
+        const card = document.createElement('div');
+        card.className = 'prediction-card';
+        card.innerHTML = `
+          <h3>Prediction #${index + 1}</h3>
+          <p><strong>Name:</strong> ${item.name || 'Not provided'}</p>
+          <p><strong>Gender:</strong> ${item.gender || 'Not provided'}</p>
+          <p><strong>DOB:</strong> ${item.dob}</p>
+          <p><strong>TOB:</strong> ${item.tob}</p>
+          <p><strong>Location:</strong> ${item.location}</p>
+          <p><strong>Zodiac:</strong> ${item.zodiac || 'Not provided'}</p>
+          <p><strong>Skills:</strong> ${item.skills ? item.skills.join(', ') : 'None selected'}</p>
+          <p><strong>Timestamp:</strong> ${item.timestamp}</p>
+          <div class="prediction-text"><em>${item.result}</em></div>
+        `;
+        historyList.appendChild(card);
+      });
+    }
+    
+    function clearHistory() {
+      if (confirm('Are you sure you want to clear all prediction history?')) {
+        localStorage.removeItem('predictionHistory');
+        location.reload();
+      }
+    }
+    
+    function exportHistory() {
+      if (predictions.length === 0) {
+        alert('No history to export.');
+        return;
+      }
+      
+      let content = predictions.map((p, i) => 
+        `Prediction #${i + 1}\n` +
+        `Name: ${p.name || 'Not provided'}\n` +
+        `Gender: ${p.gender || 'Not provided'}\n` +
+        `DOB: ${p.dob}\n` +
+        `TOB: ${p.tob}\n` +
+        `Location: ${p.location}\n` +
+        `Zodiac: ${p.zodiac || 'Not provided'}\n` +
+        `Skills: ${p.skills ? p.skills.join(', ') : 'None selected'}\n` +
+        `Timestamp: ${p.timestamp}\n\n` +
+        `PREDICTION:\n${p.result}\n\n` +
+        `------------------------------------------\n\n`
+      ).join('');
+      
+      const blob = new Blob([content], { type: 'text/plain' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = 'career_predictions.txt';
+      link.click();
+    }
+  </script>
+</body>
+</html>

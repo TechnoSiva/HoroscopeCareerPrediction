@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Horoscope Career Prediction</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Career Prediction</h1>
+    <form id="astro-form">
+      <input type="text" id="name" placeholder="Full Name" required />
+      <select id="gender" required>
+        <option value="">Select Gender</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+        <option value="Other">Other</option>
+      </select>
+      <input type="date" id="dob" required />
+      <input type="time" id="tob" required />
+      <input type="text" id="location" placeholder="Place of Birth" required />
+      
+      <!-- New zodiac sign dropdown -->
+      <select id="zodiac" required>
+        <option value="">Select Your Zodiac Sign</option>
+        <option value="Aries">Aries</option>
+        <option value="Taurus">Taurus</option>
+        <option value="Gemini">Gemini</option>
+        <option value="Cancer">Cancer</option>
+        <option value="Leo">Leo</option>
+        <option value="Virgo">Virgo</option>
+        <option value="Libra">Libra</option>
+        <option value="Scorpio">Scorpio</option>
+        <option value="Sagittarius">Sagittarius</option>
+        <option value="Capricorn">Capricorn</option>
+        <option value="Aquarius">Aquarius</option>
+        <option value="Pisces">Pisces</option>
+      </select>
+      
+      <div class="skills-box">
+        <label>Choose Your Skills:</label>
+        <div class="checkbox-grid">
+          <!-- Existing skills -->
+          <label><input type="checkbox" name="skills" value="Writing"> Writing</label>
+          <label><input type="checkbox" name="skills" value="Public Speaking"> Public Speaking</label>
+          <label><input type="checkbox" name="skills" value="Coding"> Coding</label>
+          <label><input type="checkbox" name="skills" value="Design"> Design</label>
+          <label><input type="checkbox" name="skills" value="Management"> Management</label>
+          <label><input type="checkbox" name="skills" value="Marketing"> Marketing</label>
+          <label><input type="checkbox" name="skills" value="Analysis"> Analysis</label>
+          <label><input type="checkbox" name="skills" value="Teaching"> Teaching</label>
+          
+          <!-- Additional skills -->
+          <label><input type="checkbox" name="skills" value="Leadership"> Leadership</label>
+          <label><input type="checkbox" name="skills" value="Problem Solving"> Problem Solving</label>
+          <label><input type="checkbox" name="skills" value="Communication"> Communication</label>
+          <label><input type="checkbox" name="skills" value="Creativity"> Creativity</label>
+          <label><input type="checkbox" name="skills" value="Research"> Research</label>
+          <label><input type="checkbox" name="skills" value="Critical Thinking"> Critical Thinking</label>
+          <label><input type="checkbox" name="skills" value="Negotiation"> Negotiation</label>
+          <label><input type="checkbox" name="skills" value="Data Analysis"> Data Analysis</label>
+          <label><input type="checkbox" name="skills" value="Strategic Planning"> Strategic Planning</label>
+          <label><input type="checkbox" name="skills" value="Teamwork"> Teamwork</label>
+          <label><input type="checkbox" name="skills" value="Networking"> Networking</label>
+          <label><input type="checkbox" name="skills" value="Sales"> Sales</label>
+        </div>
+      </div>
+      <button type="submit">Get Prediction</button>
+    </form>
+    <button onclick="window.location.href='history.html'" class="history-button">View History</button>
+    <div id="loader" class="loader" style="display: none;"></div>
+    <div id="result"></div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
